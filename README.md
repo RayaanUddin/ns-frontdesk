@@ -1,5 +1,3 @@
-![Nick Solo]
-
 ## Front Desk
 
 ## Install 

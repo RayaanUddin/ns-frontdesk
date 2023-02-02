@@ -1,5 +1,7 @@
 ## Front Desk
 
+## Author: Nick Solo
+
 ## Install 
 - place ns-frontdesk in [qb] folder
 - Launch your Server

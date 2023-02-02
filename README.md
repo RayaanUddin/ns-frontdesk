@@ -1,4 +1,4 @@
-![Nick Solo](https://i.imgur.com/VFEXnGd.png)
+![Nick Solo]
 
 ## Front Desk
 

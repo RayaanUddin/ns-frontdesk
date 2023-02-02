@@ -1,6 +1,6 @@
 ## Front Desk
 
-## Author: Nick Solo
+## Author: Rayaan Uddin
 
 ## Install 
 - place ns-frontdesk in [qb] folder

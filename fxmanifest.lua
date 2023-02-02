@@ -1,7 +1,7 @@
 fx_version 'cerulean'
 game 'gta5'
 
-author 'Nick Solo'
+author 'Rayaan Uddin'
 description 'ns-frontdesk'
 version '1.0.0'
 

@@ -14,10 +14,9 @@ RegisterNetEvent("QBCore:Client:OnJobUpdate", function()
     PlayerData = QBCore.Functions.GetPlayerData()
 end)
 
-
 CreateThread(function() 
 	for k, v in pairs(Config.Locations["police"]) do
-        exports['ns-target']:AddBoxZone(v.name, v.coords, v.length, v.width, {
+        exports['qb-target']:AddBoxZone(v.name, v.coords, v.length, v.width, {
             name = v.name,
             debugPoly = Config.Debug,
             heading = v.heading,
@@ -176,15 +175,26 @@ RegisterNetEvent('ns-frontdesk:client:RequestAssistance',function(type)
         end
     elseif Config.Dispatch == "ps-dispatch" then
         local PlayerData = QBCore.Functions.GetPlayerData()
-        local coords = GetEntityCoords(PlayerPedId())
         if type == "assistance" then 
-            exports["ps-dispatch"]:CustomAlert({ coords = vector3(442.44, -979.91, 30.69), message = "Assitance Required", dispatchCode = "10-60", firstStreet = coords, name =  PlayerData.charinfo.firstname:sub(1,1):upper()..PlayerData.charinfo.firstname:sub(2).. " ".. PlayerData.charinfo.lastname:sub(1,1):upper()..PlayerData.charinfo.lastname:sub(2), description = "Assistance Required", radius = 0, sprite = 205, color = 2, scale = 1.0, length = 3, })
+            exports["ps-dispatch"]:CustomAlert({
+                coords = GetEntityCoords(PlayerPedId()),
+                message = "Assitance Required", 
+                dispatchCode = "10-60", 
+                firstStreet = coords, 
+                name =  PlayerData.charinfo.firstname:sub(1,1):upper()..PlayerData.charinfo.firstname:sub(2).. " ".. PlayerData.charinfo.lastname:sub(1,1):upper()..PlayerData.charinfo.lastname:sub(2), 
+                description = "Assistance Required", 
+                radius = 0, 
+                sprite = 205, 
+                color = 2, 
+                scale = 1.0, 
+                length = 3,
+            })
         elseif type == "weaponlicense" then
-            exports["ps-dispatch"]:CustomAlert({ coords = vector3(442.44, -979.91, 30.69), message = "Weapon License Request", dispatchCode = "10-60", firstStreet = coords, name = PlayerData.charinfo.firstname:sub(1,1):upper()..PlayerData.charinfo.firstname:sub(2).. " ".. PlayerData.charinfo.lastname:sub(1,1):upper()..PlayerData.charinfo.lastname:sub(2), description = "Weapon License Request", radius = 0, sprite = 205, color = 2, scale = 1.0, length = 3, })
+            exports["ps-dispatch"]:CustomAlert({coords = GetEntityCoords(PlayerPedId()), message = "Weapon License Request", dispatchCode = "10-60", firstStreet = coords, name = PlayerData.charinfo.firstname:sub(1,1):upper()..PlayerData.charinfo.firstname:sub(2).. " ".. PlayerData.charinfo.lastname:sub(1,1):upper()..PlayerData.charinfo.lastname:sub(2), description = "Weapon License Request", radius = 0, sprite = 205, color = 2, scale = 1.0, length = 3, })
         elseif type == "interview" then
-            exports["ps-dispatch"]:CustomAlert({ coords = vector3(442.44, -979.91, 30.69), message = "Interview Request", dispatchCode = "10-60", firstStreet = coords, name = PlayerData.charinfo.firstname:sub(1,1):upper()..PlayerData.charinfo.firstname:sub(2).. " ".. PlayerData.charinfo.lastname:sub(1,1):upper()..PlayerData.charinfo.lastname:sub(2), description = "Interview Request", radius = 0, sprite = 205, color = 2, scale = 1.0, length = 3, })
+            exports["ps-dispatch"]:CustomAlert({ coords = GetEntityCoords(PlayerPedId()), message = "Interview Request", dispatchCode = "10-60", firstStreet = coords, name = PlayerData.charinfo.firstname:sub(1,1):upper()..PlayerData.charinfo.firstname:sub(2).. " ".. PlayerData.charinfo.lastname:sub(1,1):upper()..PlayerData.charinfo.lastname:sub(2), description = "Interview Request", radius = 0, sprite = 205, color = 2, scale = 1.0, length = 3, })
         elseif type == "supervisor" then
-            exports["ps-dispatch"]:CustomAlert({ coords = vector3(442.44, -979.91, 30.69), message = "Supervisor Request", dispatchCode = "10-60", firstStreet = coords, name = PlayerData.charinfo.firstname:sub(1,1):upper()..PlayerData.charinfo.firstname:sub(2).. " ".. PlayerData.charinfo.lastname:sub(1,1):upper()..PlayerData.charinfo.lastname:sub(2), description = "Supervisor Request", radius = 0, sprite = 205, color = 2, scale = 1.0, length = 3, })
+            exports["ps-dispatch"]:CustomAlert({ coords = GetEntityCoords(PlayerPedId()), message = "Supervisor Request", dispatchCode = "10-60", firstStreet = coords, name = PlayerData.charinfo.firstname:sub(1,1):upper()..PlayerData.charinfo.firstname:sub(2).. " ".. PlayerData.charinfo.lastname:sub(1,1):upper()..PlayerData.charinfo.lastname:sub(2), description = "Supervisor Request", radius = 0, sprite = 205, color = 2, scale = 1.0, length = 3, })
         end
     elseif Config.Dispatch == "cd_dispatch" then
         local data = exports['cd_dispatch']:GetPlayerInfo()
@@ -204,7 +214,7 @@ end)
 AddEventHandler('onResourceStop', function(resource)
     if resource == GetCurrentResourceName() then
         for k, v in pairs(Config.Locations["police"]) do
-            exports['ns-target']:RemoveZone(v.name)
+            exports['qb-target']:RemoveZone(v.name)
         end
     end
 end)
